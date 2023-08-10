@@ -27,7 +27,7 @@ endif
 " Auto Insertion for different file creation
 autocmd BufNewfile *.cpp,*.sh,*.java,*.py exec ":call SetTitle()"
 
-func SetTitle()
+function! SetTitle()
 	if &filetype == 'sh'
 		call setline(1,"\#! /bin/bash")
 		call append(line("."), "\############################################################")
@@ -67,7 +67,7 @@ func SetTitle()
 		
 	endif
 	autocmd BufNewfile * normal G
-	endfunc
+endfunction
 
 
 " Coding autocomplete realted
@@ -105,7 +105,7 @@ autocmd FileType python set dictionary=/home/chenanping/.vim/dict/template.dict/
 function! Insert_TAB()
 	let col=col('.')-1
 	if !col || getline('.')[col-1] !~ '\k'
-		return"\<TAB>"
+		return"\<C-X>\<C-F>"
 	elseif getline('.')[col-1] == '\\'
 		return"\<C-N>"
 	else
